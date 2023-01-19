@@ -1,0 +1,12 @@
+---
+#jira related vars
+jira_server: https://issues.redhat.com/
+jira_project: JBEAP
+jira_token: MDc2MjQ0MDAwMDYwOhTZXepa1/7ozsGHnmEVaKO/Yz9X
+jira_query: project = JBEAP AND fixVersion = 7.4.8.GA AND assignee in (currentUser()) ORDER BY priority DESC, updated DESC
+
+#email related vars
+email_host: smtp.corp.redhat.com
+email_port: 25
+email_username: rchakrab@redhat.com
+email_recipient: rchakrab@redhat.com

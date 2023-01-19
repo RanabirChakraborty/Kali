@@ -1,0 +1,37 @@
+---
+- name: Sent an email
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Fetch Jira issues
+      community.general.jira:
+        uri: "{{ jira_server }}"
+        token: "{{ jira_token }}"
+        project: "{{ jira_project }}"
+        operation: search
+        jql: "{{ jira_query }}"
+        validate_certs: no
+      register: jira_issues
+
+    - name: Render email template
+      template:
+        src: templates/email_template.j2
+        dest: /tmp/email.txt
+
+    - name: Send email with Jira issues
+      mail:
+        host: "{{ email_host }}"
+        port: "{{ email_port }}"
+        username: "{{ email_username }}"
+        password: ""
+        to: "{{ email_recipient }}"
+        subject: Jira issues update
+        body: "{{ lookup('file', '/tmp/email.txt') }}"
+
+    - name: Delete text file
+      file:
+        path: /tmp/email.txt
+        state: absent
