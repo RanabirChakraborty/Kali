@@ -2,7 +2,7 @@
 #jira related vars
 jira_server: https://issues.redhat.com/
 jira_project: JBEAP
-jira_token: MDc2MjQ0MDAwMDYwOhTZXepa1/7ozsGHnmEVaKO/Yz9X
+jira_token: xxxx
 jira_query: project = JBEAP AND fixVersion = 7.4.8.GA AND assignee in (currentUser()) ORDER BY priority DESC, updated DESC
 
 #email related vars

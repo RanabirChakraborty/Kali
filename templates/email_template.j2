@@ -1,3 +1,10 @@
 List of Jira issues
 
-{{ jira_issues.meta.issues | json_query('[*].key') }}
+
+{% for issue in jira_issues.meta.issues | json_query('[*]') %}
+Issue Number: {{ issue.key }}
+Summary: {{ issue.fields.summary }}
+
+{% endfor %}
+
+Total count of issues: {{ jira_issues.meta.total }}
